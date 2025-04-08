@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment_application/data/dummy_cars.dart';
 import 'package:flutter_assignment_application/models/car.dart';
-import 'package:flutter_assignment_application/screens/add_car_screen.dart'; // Make this screen
+import 'package:flutter_assignment_application/screens/add_car_screen.dart';
+import 'package:flutter_assignment_application/screens/car_details_screen.dart'; 
 
 class CarList extends StatefulWidget {
   const CarList({super.key});
@@ -11,12 +12,21 @@ class CarList extends StatefulWidget {
 }
 
 class _CarListState extends State<CarList> {
-  List<Car> _cars = dummyCars;
+  final List<Car> _cars = dummyCars;
 
   void _addCar(Car car) {
     setState(() {
       _cars.add(car);
     });
+  }
+
+  void _navigateToDetailScreen(Car car) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CarDetailScreen(car: car),
+      ),
+    );
   }
 
   @override
@@ -33,6 +43,7 @@ class _CarListState extends State<CarList> {
               subtitle: Text(
                 '${car.year} - ${car.colour} - \$${car.price.toStringAsFixed(2)}',
               ),
+              onTap: () => _navigateToDetailScreen(car), // Add this line
             ),
           );
         },

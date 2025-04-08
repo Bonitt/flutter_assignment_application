@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assignment_application/widgets/cars_list.dart';
+import 'package:flutter_assignment_application/screens/cars_list_screen.dart';
 
 void main() {
   runApp(const MainApp());

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment_application/services/notifcation_service.dart';
 import 'package:image_picker/image_picker.dart';
 import '../models/car.dart';
 
@@ -47,6 +48,15 @@ class _AddCarScreenState extends State<AddCarScreen> {
 
   void _submit() async {
     if (_formKey.currentState!.validate()) {
+      if (_imageBase64 == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please add an image of the car'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Saving car...')),
       );
@@ -61,6 +71,8 @@ class _AddCarScreenState extends State<AddCarScreen> {
           colour: _colourController.text,
           imageUrl: _imageBase64,
         );
+
+        await NotificationService().showValidationNotification('Car added successfully!');
 
         Navigator.pop(context, newCar);
       } catch (e) {

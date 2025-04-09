@@ -132,14 +132,8 @@ class _CarListState extends State<CarList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Car Collection'),
-        actions: [
-          if (!_isLoading && !_hasError)
-            IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: _loadCars,
-            ),
-        ],
+        title: const Text('My Cars'),
+        
       ),
       body: _buildContent(),
       floatingActionButton: _isLoading || _hasError

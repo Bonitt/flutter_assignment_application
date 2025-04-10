@@ -63,10 +63,10 @@ class CarDetailScreen extends StatelessWidget {
         _buildDetailRow('Make', car.name),
         _buildDetailRow('Model', car.model),
         _buildDetailRow('Year', car.year.toString()),
-        _buildDetailRow('Color', car.colour),
+        _buildDetailRow('Colour', car.colour),
         _buildDetailRow(
           'Price', 
-          '\$${car.price.toStringAsFixed(2)}',
+          '€${car.price.toStringAsFixed(2)}',
           isImportant: true,
         ),
       ],
